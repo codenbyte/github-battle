@@ -1,9 +1,8 @@
 var path = require('path');
-// var SRC_DIR = path.resolve(__dirname, "app")
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-// template: SRC_DIR + '/index.html'
+var webpack = require('webpack');
 
-module.exports = {
+var config = {
   entry: './app/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -13,11 +12,11 @@ module.exports = {
   module: {
     rules: [
       { test: /\.(js)$/, use: 'babel-loader' },
-      { test: /\.(css)$/, use: [ 'style-loader', 'css-loader' ]}
+      { test: /\.css$/, use: [ 'style-loader', 'css-loader' ]}
     ]
   },
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -25,3 +24,16 @@ module.exports = {
     })
   ]
 };
+
+if (process.env.NODE_ENV === 'production') {
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin()
+  )
+}
+
+module.exports = config;
