@@ -7,12 +7,22 @@ body {
   margin: 0 auto;
 }
 
+.row {
+  display: flex;
+  justify-content: space-around;
+}
+
 ul {
   padding: 0;
 }
 
 li {
   list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: #d0021b;
 }
 
 .avatar {
@@ -51,6 +61,39 @@ li {
   margin: 10px;
 }
 
+.button {
+  color: #e6e6e6;
+  background: #0a0a0a;
+  border: none;
+  font-size: 16px;
+  border-radius: 3px;
+  width: 200px;
+  text-align: center;
+  display: block;
+  padding: 7px;
+  margin: 10px auto;
+}
+
+.button:hover:enabled {
+  background: linear-gradient(#1a1a1a,#0a0a0a);
+  color: fff;
+  text-decoration: none;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
 .nav {
   display: flex;
+}
+
+.nav li {
+  margin-right: 15px;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
