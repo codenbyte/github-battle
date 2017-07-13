@@ -1,5 +1,52 @@
 var React = require('react');
 
+class PlayerInput extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      username: ''
+    }
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    var value = event.target.value;
+
+    this.setState(function () {
+      return {
+        username: value
+      }
+    })
+  }
+
+  render() {
+    return (
+      <form className='column'>
+        <lable className='header' htmlFor='username'>
+          {this.props.lable}
+        </lable>
+        <input
+          id='username'
+          placeholder='github username'
+          type='text'
+          autoComplete='off'
+          value={this.state.username}
+          onChange={this.handleChange}
+          />
+
+      </form>
+    )
+  }
+}
+
+PlayerInput.propTypes = {
+  id: propTypes.string.isRequired,
+  lable: propTypes.string.isRequired,
+  onSubmit: propTypes.func.isRequired
+}
+
 class Battle extends React.Component {
   constructor(props) {
     super(props);
@@ -41,7 +88,7 @@ class Battle extends React.Component {
               id='playTwo'
               lable='Player Two'
               onSubmit={this.handleSubmit}
-              />} 
+              />}
         </div>
       </div>
     )
